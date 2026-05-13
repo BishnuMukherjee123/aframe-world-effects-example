@@ -47,11 +47,8 @@ export const tapPlaceComponent = {
         receive: false,
       })
 
-      // Enable standard 8th Wall gestures: drag, rotate, and pinch-to-scale
+      // Add interactive class for raycaster targeting
       newElement.setAttribute('class', 'cantap')
-      newElement.setAttribute('xrextras-hold-drag', '')
-      newElement.setAttribute('xrextras-two-finger-rotate', '')
-      newElement.setAttribute('xrextras-pinch-scale', 'min: 5; max: 60')
 
       newElement.setAttribute('gltf-model', '#cactusModel')
       this.el.sceneEl.appendChild(newElement)
@@ -67,9 +64,17 @@ export const tapPlaceComponent = {
         })
       })
 
-      // Crucial: remove the animation component once completed so it doesn't lock the scale property
+      // Crucial: wait until the intro animation completes before attaching gesture components.
+      // If added earlier, xrextras-pinch-scale natively caches the initial 0.0001 scale as its baseline,
+      // causing the model to instantly shrink to invisibility on the first multi-touch pinch.
       newElement.addEventListener('animationcomplete', () => {
         newElement.removeAttribute('animation')
+        newElement.setAttribute('scale', `${targetScale} ${targetScale} ${targetScale}`)
+
+        // Dynamically initialize gesture handlers on the full visible scale baseline
+        newElement.setAttribute('xrextras-hold-drag', '')
+        newElement.setAttribute('xrextras-two-finger-rotate', '')
+        newElement.setAttribute('xrextras-pinch-scale', 'min: 5; max: 60')
       })
     })
   },
