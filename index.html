@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>A-Frame: Tap to Place Ground</title>
+  <meta itemprop="name" content="A-Frame: Tap to Place Ground">
+  <meta name="twitter:title" content="A-Frame: Tap to Place Ground">
+  <meta property="og:title" content="A-Frame: Tap to Place Ground">
+  <meta property="og:site_name" content="A-Frame: Tap to Place Ground">
+  <meta name="description" content="Tap or click the ground to place 3D models. Showcases raycasting, spawning objects, and importing a 3D model.">
+  <meta itemprop="description" content="Tap or click the ground to place 3D models. Showcases raycasting, spawning objects, and importing a 3D model.">
+  <meta property="og:description" content="Tap or click the ground to place 3D models. Showcases raycasting, spawning objects, and importing a 3D model.">
+  <meta name="twitter:description" content="Tap or click the ground to place 3D models. Showcases raycasting, spawning objects, and importing a 3D model.">
+  <meta property="og:image" content="https://8thwall.org/aframe-world-effects/assets/preview.gif"/>
+
+  <!-- 8th Wall scripts must load synchronously BEFORE React mounts -->
+  <script crossorigin="anonymous" src="/external/scripts/8frame-1.5.0.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/xrextras@1/dist/xrextras.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/landing-page@1/dist/landing-page.js" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@8thwall/engine-binary@1/dist/xr.js" crossorigin="anonymous" async="true" data-preload-chunks="slam"></script>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+</body>
+
+</html>

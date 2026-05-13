@@ -1,0 +1,63 @@
+import React from 'react'
+
+export default function App() {
+  return (
+    <>
+      {/* "Tap To Place Model" UI overlay */}
+      <div className="over">
+        <span id="promptText">Tap To Place Model</span>
+      </div>
+
+      {/* A-Frame scene — React renders custom elements directly to the DOM */}
+      <a-scene
+        tap-place=""
+        landing-page=""
+        xrextras-loading=""
+        xrextras-runtime-error=""
+        renderer="colorManagement:true"
+        xrweb="
+          allowedDevices: any;
+          defaultEnvironmentFogIntensity: 0.5;
+          defaultEnvironmentFloorTexture: #groundTex;
+          defaultEnvironmentFloorColor: #FFF;
+          defaultEnvironmentSkyBottomColor: #B4C4CC;
+          defaultEnvironmentSkyTopColor: #5ac8fa;
+          defaultEnvironmentSkyGradientStrength: 0.5;"
+      >
+        {/* Assets — loaded from /public/assets/ */}
+        <a-assets>
+          <img id="groundTex" src="/assets/sand.jpg" />
+          <a-asset-item id="cactusModel" src="/assets/10.glb"></a-asset-item>
+        </a-assets>
+
+        {/* Camera with raycaster limited to .cantap objects */}
+        <a-camera
+          id="camera"
+          position="0 8 8"
+          raycaster="objects: .cantap"
+          cursor="fuse: false; rayOrigin: mouse;"
+        ></a-camera>
+
+        {/* Directional light that follows camera */}
+        <a-entity
+          light="type: directional; intensity: 0.8; castShadow: true; shadowMapHeight:2048; shadowMapWidth:2048; shadowCameraTop: 40; shadowCameraBottom: -40; shadowCameraRight: 40; shadowCameraLeft: -40; target: #camera"
+          xrextras-attach="target: camera; offset: 8 15 4"
+          position="1 4.3 2.5"
+          shadow=""
+        ></a-entity>
+
+        <a-light type="ambient" intensity="0.5"></a-light>
+
+        {/* Invisible ground plane — clicking this spawns models */}
+        <a-box
+          id="ground"
+          className="cantap"
+          scale="1000 2 1000"
+          position="0 -0.99 0"
+          material="shader: shadow; transparent: true; opacity: 0.4"
+          shadow=""
+        ></a-box>
+      </a-scene>
+    </>
+  )
+}
