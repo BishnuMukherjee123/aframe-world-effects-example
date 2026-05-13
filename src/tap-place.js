@@ -11,7 +11,28 @@ export const tapPlaceComponent = {
     this.prompt = document.getElementById('promptText')
     this.spawnedEl = null
     
+    // Global tracker to detect if the user is performing multi-finger gestures (pinch/rotate)
+    let isGestureActive = false
+    window.addEventListener('touchstart', (e) => {
+      if (e.touches.length > 1) {
+        isGestureActive = true
+      }
+    })
+    window.addEventListener('touchend', (e) => {
+      if (e.touches.length <= 1) {
+        // Slight delay to absorb trailing finger lifts and prevent accidental teleportation
+        setTimeout(() => {
+          isGestureActive = false
+        }, 300)
+      }
+    })
+
     ground.addEventListener('click', (event) => {
+      // Ignore clicks if the user is actively pinching, scaling, or rotating with fingers
+      if (isGestureActive) {
+        return
+      }
+
       // Dismiss the prompt text.
       if (this.prompt) {
         this.prompt.style.display = 'none'
@@ -62,6 +83,11 @@ export const tapPlaceComponent = {
           easing: 'easeOutElastic',
           dur: 800,
         })
+      })
+
+      // Crucial: remove the animation component once completed so it doesn't lock the scale property
+      newElement.addEventListener('animationcomplete', () => {
+        newElement.removeAttribute('animation')
       })
     })
   },
