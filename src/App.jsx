@@ -14,6 +14,7 @@ export default function App() {
         landing-page=""
         xrextras-loading=""
         xrextras-runtime-error=""
+        xrextras-gesture-detector=""
         renderer="colorManagement:true"
         xrweb="
           allowedDevices: any;
