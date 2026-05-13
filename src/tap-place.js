@@ -10,26 +10,10 @@ export const tapPlaceComponent = {
     const ground = document.getElementById('ground')
     this.prompt = document.getElementById('promptText')
     this.spawnedEl = null
-    
-    // Global tracker to detect if the user is performing multi-finger gestures (pinch/rotate)
-    let isGestureActive = false
-    window.addEventListener('touchstart', (e) => {
-      if (e.touches.length > 1) {
-        isGestureActive = true
-      }
-    })
-    window.addEventListener('touchend', (e) => {
-      if (e.touches.length <= 1) {
-        // Slight delay to absorb trailing finger lifts and prevent accidental teleportation
-        setTimeout(() => {
-          isGestureActive = false
-        }, 300)
-      }
-    })
 
     ground.addEventListener('click', (event) => {
-      // Ignore clicks if the user is actively pinching, scaling, or rotating with fingers
-      if (isGestureActive) {
+      // If model is already spawned, ignore any further ground clicks completely
+      if (this.spawnedEl) {
         return
       }
 
@@ -41,15 +25,13 @@ export const tapPlaceComponent = {
       // The raycaster gives a location of the touch in the scene
       const touchPoint = event.detail.intersection.point
 
-      // If model is already spawned, just move it to the new tap position
-      if (this.spawnedEl) {
-        this.spawnedEl.setAttribute('position', touchPoint)
-        return
-      }
-      
       // Create new entity for the single object instance
       const newElement = document.createElement('a-entity')
       this.spawnedEl = newElement
+
+      // Immediately disable raycasting against the ground plane so future finger gestures
+      // (pinch-to-scale, rotate, drag) never trigger ground clicks or teleportation.
+      ground.classList.remove('cantap')
 
       newElement.setAttribute('position', touchPoint)
 
