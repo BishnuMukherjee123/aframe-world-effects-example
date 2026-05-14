@@ -3,8 +3,8 @@
 export const tapPlaceComponent = {
   schema: {
     // Increased base scale significantly to ensure initial size is larger and premium
-    min: {default: 25},
-    max: {default: 30},
+    min: {default: 35},
+    max: {default: 40},
   },
   init() {
     const ground = document.getElementById('ground')
@@ -33,8 +33,8 @@ export const tapPlaceComponent = {
       // (pinch-to-scale, rotate, drag) never trigger ground clicks or teleportation.
       ground.classList.remove('cantap')
 
-      // Add a 0.5 meter vertical offset so the model floats above the ground
-      newElement.setAttribute('position', `${touchPoint.x} ${touchPoint.y + 0.5} ${touchPoint.z}`)
+      // Use a tiny 5cm offset. Large offsets (like 0.5m) cause extreme parallax drift illusions in AR!
+      newElement.setAttribute('position', `${touchPoint.x} ${touchPoint.y + 0.05} ${touchPoint.z}`)
 
       const randomYRotation = Math.random() * 360
       newElement.setAttribute('rotation', `0 ${randomYRotation} 0`)

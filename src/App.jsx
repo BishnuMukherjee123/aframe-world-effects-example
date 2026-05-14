@@ -12,10 +12,9 @@ export default function App() {
       <a-scene
         tap-place=""
         landing-page=""
-        xrextras-loading=""
         xrextras-runtime-error=""
         xrextras-gesture-detector=""
-        renderer="colorManagement:true"
+        renderer="colorManagement:true; logarithmicDepthBuffer:true;"
         xrweb="
           allowedDevices: any;
           defaultEnvironmentFogIntensity: 0.5;
