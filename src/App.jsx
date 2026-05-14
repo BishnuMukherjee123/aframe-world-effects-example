@@ -15,7 +15,8 @@ export default function App() {
         xrextras-loading=""
         xrextras-runtime-error=""
         xrextras-gesture-detector=""
-        renderer="colorManagement:true; logarithmicDepthBuffer:true;"
+        xrextras-pbr-environment=""
+        renderer="colorManagement:true; physicallyCorrectLights:true; toneMapping: ACESFilmic; logarithmicDepthBuffer:true;"
         xrweb="
           allowedDevices: any;
           defaultEnvironmentFogIntensity: 0.5;
