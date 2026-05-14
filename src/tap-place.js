@@ -2,8 +2,8 @@
 
 export const tapPlaceComponent = {
   schema: {
-    min: {default: 15},
-    max: {default: 20},
+    min: {default: 3},
+    max: {default: 5},
   },
   init() {
     const ground = document.getElementById('ground')
