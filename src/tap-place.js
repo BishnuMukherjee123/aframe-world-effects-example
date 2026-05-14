@@ -2,9 +2,8 @@
 
 export const tapPlaceComponent = {
   schema: {
-    // Increased base scale significantly to ensure initial size is larger and premium
-    min: {default: 35},
-    max: {default: 40},
+    min: {default: 15},
+    max: {default: 20},
   },
   init() {
     const ground = document.getElementById('ground')
@@ -77,7 +76,7 @@ export const tapPlaceComponent = {
         // Dynamically initialize gesture handlers on the full visible scale baseline
         // newElement.setAttribute('xrextras-hold-drag', '') // Removed so it sticks in place
         newElement.setAttribute('xrextras-two-finger-rotate', '')
-        newElement.setAttribute('xrextras-pinch-scale', 'min: 0.5; max: 3')
+        newElement.setAttribute('xrextras-pinch-scale', 'min: 0.1; max: 5')
       })
     })
   },
