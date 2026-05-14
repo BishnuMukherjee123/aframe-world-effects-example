@@ -18,7 +18,6 @@ export default function App() {
         renderer="colorManagement:true; logarithmicDepthBuffer:true;"
         xrweb="
           allowedDevices: any;
-          absoluteScale: true;
           defaultEnvironmentFogIntensity: 0.5;
           defaultEnvironmentFloorTexture: #groundTex;
           defaultEnvironmentFloorColor: #FFF;
@@ -35,7 +34,6 @@ export default function App() {
         {/* Camera with raycaster limited to .cantap objects */}
         <a-camera
           id="camera"
-          position="0 8 8"
           raycaster="objects: .cantap"
           cursor="fuse: false; rayOrigin: mouse;"
         ></a-camera>
