@@ -46,7 +46,8 @@ export default function App() {
           shadow=""
         ></a-entity>
 
-        <a-light type="ambient" intensity="0.5"></a-light>
+        <a-light type="ambient" intensity="0.3"></a-light>
+        <a-light type="hemisphere" ground-color="#333" intensity="0.8"></a-light>
 
         {/* Invisible ground plane — clicking this spawns models */}
         <a-box
@@ -54,7 +55,7 @@ export default function App() {
           className="cantap"
           scale="1000 2 1000"
           position="0 -0.99 0"
-          material="shader: shadow; transparent: true; opacity: 0.4"
+          material="shader: shadow; transparent: true; opacity: 0.7"
           shadow=""
         ></a-box>
       </a-scene>
