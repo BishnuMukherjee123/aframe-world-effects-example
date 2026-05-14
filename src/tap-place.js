@@ -3,8 +3,8 @@
 export const tapPlaceComponent = {
   schema: {
     // Increased base scale significantly to ensure initial size is larger and premium
-    min: {default: 15},
-    max: {default: 18},
+    min: {default: 25},
+    max: {default: 30},
   },
   init() {
     const ground = document.getElementById('ground')
@@ -33,7 +33,8 @@ export const tapPlaceComponent = {
       // (pinch-to-scale, rotate, drag) never trigger ground clicks or teleportation.
       ground.classList.remove('cantap')
 
-      newElement.setAttribute('position', touchPoint)
+      // Add a 0.5 meter vertical offset so the model floats above the ground
+      newElement.setAttribute('position', `${touchPoint.x} ${touchPoint.y + 0.5} ${touchPoint.z}`)
 
       const randomYRotation = Math.random() * 360
       newElement.setAttribute('rotation', `0 ${randomYRotation} 0`)
@@ -72,9 +73,9 @@ export const tapPlaceComponent = {
         newElement.setAttribute('scale', `${targetScale} ${targetScale} ${targetScale}`)
 
         // Dynamically initialize gesture handlers on the full visible scale baseline
-        newElement.setAttribute('xrextras-hold-drag', '')
+        // newElement.setAttribute('xrextras-hold-drag', '') // Removed so it sticks in place
         newElement.setAttribute('xrextras-two-finger-rotate', '')
-        newElement.setAttribute('xrextras-pinch-scale', 'min: 5; max: 60')
+        newElement.setAttribute('xrextras-pinch-scale', 'min: 1; max: 3')
       })
     })
   },
