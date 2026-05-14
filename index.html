@@ -16,6 +16,15 @@
   <meta name="twitter:description" content="Tap or click the ground to place 3D models. Showcases raycasting, spawning objects, and importing a 3D model.">
   <meta property="og:image" content="https://8thwall.org/aframe-world-effects/assets/preview.gif"/>
 
+  <style>
+    /* Completely hide the 'powered by 8thwall' watermark from the loading screen */
+    #poweredby, .poweredby-img, #loadBackground > div:last-child {
+      display: none !important;
+      visibility: hidden !important;
+      opacity: 0 !important;
+    }
+  </style>
+
   <!-- 8th Wall scripts must load synchronously BEFORE React mounts -->
   <script crossorigin="anonymous" src="/external/scripts/8frame-1.5.0.min.js"></script>
   

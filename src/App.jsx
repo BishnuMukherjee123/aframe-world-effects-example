@@ -12,11 +12,13 @@ export default function App() {
       <a-scene
         tap-place=""
         landing-page=""
+        xrextras-loading=""
         xrextras-runtime-error=""
         xrextras-gesture-detector=""
         renderer="colorManagement:true; logarithmicDepthBuffer:true;"
         xrweb="
           allowedDevices: any;
+          absoluteScale: true;
           defaultEnvironmentFogIntensity: 0.5;
           defaultEnvironmentFloorTexture: #groundTex;
           defaultEnvironmentFloorColor: #FFF;
@@ -40,7 +42,7 @@ export default function App() {
 
         {/* Directional light that follows camera */}
         <a-entity
-          light="type: directional; intensity: 0.8; castShadow: true; shadowMapHeight:2048; shadowMapWidth:2048; shadowCameraTop: 40; shadowCameraBottom: -40; shadowCameraRight: 40; shadowCameraLeft: -40; target: #camera"
+          light="type: directional; intensity: 0.8; castShadow: true; shadowMapHeight:2048; shadowMapWidth:2048; shadowCameraTop: 10; shadowCameraBottom: -10; shadowCameraRight: 10; shadowCameraLeft: -10; target: #camera"
           xrextras-attach="target: camera; offset: 8 15 4"
           position="1 4.3 2.5"
           shadow=""

@@ -33,7 +33,7 @@ export const tapPlaceComponent = {
       // (pinch-to-scale, rotate, drag) never trigger ground clicks or teleportation.
       ground.classList.remove('cantap')
 
-      // Use a tiny 5cm offset. Large offsets (like 0.5m) cause extreme parallax drift illusions in AR!
+      // Restored the 5cm float offset as requested
       newElement.setAttribute('position', `${touchPoint.x} ${touchPoint.y + 0.05} ${touchPoint.z}`)
 
       const randomYRotation = Math.random() * 360
@@ -44,8 +44,10 @@ export const tapPlaceComponent = {
       newElement.setAttribute('visible', 'false')
       newElement.setAttribute('scale', '0.0001 0.0001 0.0001')
 
+      // Enable casting shadows to visually ground the object and prevent optical drifting
       newElement.setAttribute('shadow', {
         receive: false,
+        cast: true,
       })
 
       // Add interactive class for raycaster targeting
@@ -75,7 +77,7 @@ export const tapPlaceComponent = {
         // Dynamically initialize gesture handlers on the full visible scale baseline
         // newElement.setAttribute('xrextras-hold-drag', '') // Removed so it sticks in place
         newElement.setAttribute('xrextras-two-finger-rotate', '')
-        newElement.setAttribute('xrextras-pinch-scale', 'min: 1; max: 3')
+        newElement.setAttribute('xrextras-pinch-scale', 'min: 0.5; max: 3')
       })
     })
   },
